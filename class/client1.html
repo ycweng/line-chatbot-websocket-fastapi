@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>彈幕系統</title>
+</head>
+<body>
+<h1>WebSocket 彈幕Demo</h1>
+
+<ul id='messages'>
+</ul>
+
+<script>
+    var ws = new WebSocket("ws://127.0.0.1:8010/ws/user1");
+
+    ws.onmessage = function(event) {
+        var messages = document.getElementById('messages')
+        var message = document.createElement('li')
+        var content = document.createTextNode(event.data)
+        message.appendChild(content)
+        messages.appendChild(message)
+    };
+
+</script>
+
+</body>
+</html>
