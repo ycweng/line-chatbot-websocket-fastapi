@@ -129,17 +129,21 @@ def handling_message(event):
     userid = event.source.user_id
     if isinstance(event.message, TextMessage):
         messages = event.message.text
-        if messages == "幫助" or messages== "help":
+        if messages == "幫助" or messages == "help":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(helpMessage))
+            return
         if messages == "啤酒汽水大賽":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(beerMessage))
-
+            return
         if messages == "撲克大賽":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(pokerMessage))
+            return
         if messages == "樂透":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(lotteryMessage))
+            return
         if messages == "濾鏡":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(socialMedia))
+            return
         else:
             asyncio.create_task(sendmsg(line_bot_api.get_profile(userid).display_name, messages))
             echoMessages = TextSendMessage(text="發送：" + messages + "成功")
