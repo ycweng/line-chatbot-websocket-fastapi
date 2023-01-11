@@ -11,7 +11,7 @@
 </ul>
 
 <script>
-    var ws = new WebSocket("ws://127.0.0.1:8010/ws/user1");
+    var ws = new WebSocket("wss://linebot.ycwww.dev:8010/ws/user1");
 
     ws.onmessage = function(event) {
         var messages = document.getElementById('messages')

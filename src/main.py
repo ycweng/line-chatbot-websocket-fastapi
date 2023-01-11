@@ -3,6 +3,7 @@ from typing import List
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request, HTTPException
 from fastapi import Response
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -15,9 +16,13 @@ from linebot.models import (
 import asyncio
 access_token = os.getenv("RUTEN_LINE_ACCESS_TOKEN")
 secret = os.getenv("RUTEN_LINE_SECRET")
+
 line_bot_api = LineBotApi(access_token)
 handler = WebhookHandler(secret)
+
 app = FastAPI()
+app.add_middleware(HTTPSRedirectMiddleware)
+
 
 
 class ConnectionManager:
@@ -49,10 +54,10 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 
-@app.websocket("/ws/{user}")
-async def websocket_endpoint(websocket: WebSocket, user: str):
+@app.websocket("/ws/user1")
+async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
-    await manager.broadcast(f"有人登入了")
+#    await manager.broadcast(f"有人登入了")
     # await manager.broadcast(f"用户{user}进入聊天室")
 
     try:
@@ -63,7 +68,7 @@ async def websocket_endpoint(websocket: WebSocket, user: str):
 
     except WebSocketDisconnect:
         manager.disconnect(websocket)
-        await manager.broadcast(f"用户-{user}-离开")
+#        await manager.broadcast(f"用户-{user}-离开")
 
 
 @app.get("/sendmsg/{user}/{msg}")
@@ -113,4 +118,4 @@ if __name__ == "__main__":
 
     # 官方推荐是用命令后启动 uvicorn main:app --host=127.0.0.1 --port=8010 --reload
     # uvicorn.run(app='main:app', host="127.0.0.1", port=8010, reload=True, debug=True)
-    uvicorn.run(app='main:app', host="127.0.0.1", port=8010, reload=True)
+    uvicorn.run(app='main:app', host="linebot.ycwww.dev", port=8010, ssl_keyfile="privkey.pem", ssl_certfile="fullchain.pem")
