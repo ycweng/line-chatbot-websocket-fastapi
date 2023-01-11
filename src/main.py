@@ -14,6 +14,8 @@ from linebot.models import (
 )
 import asyncio
 
+from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
+
 access_token = os.getenv("RUTEN_LINE_ACCESS_TOKEN")
 secret = os.getenv("RUTEN_LINE_SECRET")
 
