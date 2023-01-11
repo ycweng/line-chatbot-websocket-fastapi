@@ -1,6 +1,6 @@
 import os.path
 from typing import List
-
+import json
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request, HTTPException
 from fastapi import Response
 from linebot import (
@@ -10,7 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage,
 )
 import asyncio
 
@@ -121,6 +121,9 @@ lotteryMessage = "🎲🎰樂透抽獎資格" + \
 socialMedia ="另外還有ux同事創意製作的社群濾鏡可以使用喔！也不妨按讚追蹤喔！" + \
              "https://www.instagram.com/ar/3659533600994499/" + \
              "https://www.facebook.com/fbcameraeffects/tryit/3659533600994499/"
+flexMessage = FlexSendMessage(
+    alt_text="歡迎光臨露天市集尾牙", contents=json.load(open('flex.json','r',encoding='utf-8'))
+)
 
 
 @handler.add(MessageEvent, message=(TextMessage))
@@ -130,7 +133,7 @@ def handling_message(event):
     if isinstance(event.message, TextMessage):
         messages = event.message.text
         if messages == "幫助" or messages == "help":
-            line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(helpMessage))
+            line_bot_api.reply_message(reply_token=replyToken, messages=flexMessage)
             return
         if messages == "啤酒汽水大賽":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(beerMessage))
