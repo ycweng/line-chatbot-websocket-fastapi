@@ -26,7 +26,6 @@ app = FastAPI()
 app.add_middleware(HTTPSRedirectMiddleware)
 
 
-
 class ConnectionManager:
     def __init__(self):
         # 存放激活的ws连接对象
@@ -59,7 +58,7 @@ manager = ConnectionManager()
 @app.websocket("/ws/user1")
 async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
-#    await manager.broadcast(f"有人登入了")
+    #    await manager.broadcast(f"有人登入了")
     # await manager.broadcast(f"用户{user}进入聊天室")
 
     try:
@@ -70,6 +69,8 @@ async def websocket_endpoint(websocket: WebSocket):
 
     except WebSocketDisconnect:
         manager.disconnect(websocket)
+
+
 #        await manager.broadcast(f"用户-{user}-离开")
 
 
@@ -118,11 +119,11 @@ lotteryMessage = "🎲🎰樂透抽獎資格" + \
                  "💸休單幾哩箱：" + \
                  "依照投入金額100%返還現金給同仁，1張還給大家100元。"
 
-socialMedia ="另外還有ux同事創意製作的社群濾鏡可以使用喔！也不妨按讚追蹤喔！" + \
-             "https://www.instagram.com/ar/3659533600994499/" + \
-             "https://www.facebook.com/fbcameraeffects/tryit/3659533600994499/"
+socialMedia = "另外還有ux同事創意製作的社群濾鏡可以使用喔！也不妨按讚追蹤喔！" + \
+              "https://www.instagram.com/ar/3659533600994499/" + \
+              "https://www.facebook.com/fbcameraeffects/tryit/3659533600994499/"
 flexMessage = FlexSendMessage(
-    alt_text="歡迎光臨露天市集尾牙", contents=json.load(open('flex.json','r',encoding='utf-8'))
+    alt_text="歡迎光臨露天市集尾牙", contents=json.load(open('src/flex.json', 'r', encoding='utf-8'))
 )
 
 
@@ -165,4 +166,5 @@ if __name__ == "__main__":
 
     # 官方推荐是用命令后启动 uvicorn main:app --host=127.0.0.1 --port=8010 --reload
     # uvicorn.run(app='main:app', host="127.0.0.1", port=8010, reload=True, debug=True)
-    uvicorn.run(app='main:app', host="linebot.ycwww.dev", port=8010, ssl_keyfile="privkey.pem", ssl_certfile="fullchain.pem")
+    uvicorn.run(app='main:app', host="linebot.ycwww.dev", port=8010, ssl_keyfile="privkey.pem",
+                ssl_certfile="fullchain.pem")
