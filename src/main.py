@@ -99,7 +99,7 @@ async def echoBot(request: Request):
 
 
 eventMessage = "地點｜HOOTERS美式餐廳 信義店  \n" +\
-               "   110台北市信義區松仁路58號14樓\n" + \
+               "    📍 110台北市信義區松仁路58號14樓\n" + \
                "日期｜2023/01/13\n" + \
                "時間｜17:30 開放報到，18:00準時入場"
 
@@ -141,7 +141,7 @@ def handling_message(event):
     if isinstance(event.message, TextMessage):
         messages = event.message.text
         if messages == "活動資訊":
-            line_bot_api.reply_message(reply_token=replyToken, messages=eventMessage)
+            line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(eventMessage))
             return
         if messages == "幫助" or messages == "help":
             line_bot_api.reply_message(reply_token=replyToken, messages=flexMessage)
