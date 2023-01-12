@@ -6,7 +6,7 @@
     "contents": [
       {
         "type": "text",
-        "text": "幫助清單"
+        "text": "歡迎光路Ruten Casino!!!"
       }
     ]
   },
@@ -15,6 +15,16 @@
     "layout": "vertical",
     "spacing": "sm",
     "contents": [
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "活動時間",
+          "text": "活動時間"
+        }
+      },
       {
         "type": "button",
         "style": "link",

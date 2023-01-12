@@ -98,6 +98,10 @@ async def echoBot(request: Request):
     return "OK"
 
 
+eventMessage = "地點｜HOOTERS美式餐廳 信義店   📍 110台北市信義區松仁路58號14樓\n" + \
+               "日期｜2023/01/13\n" + \
+               "時間｜17:30 開放報到，18:00準時入場"
+
 helpMessage = "輸入\"啤酒汽水大賽\"、\"撲克大賽\"、\"樂透\"、\"濾鏡\" 獲得資訊！或直接送出將你（記名）想跟大家的話發送到彈幕上！ \n"
 beerMessage = "🍺🍻🍾啤酒汽水大賽 \n" + \
               "📌所有員工(正職、顧問、實習生、工讀生) \n" + \
@@ -133,6 +137,9 @@ def handling_message(event):
     userid = event.source.user_id
     if isinstance(event.message, TextMessage):
         messages = event.message.text
+        if messages == "活動資訊":
+            line_bot_api.reply_message(reply_token=replyToken, messages=eventMessage)
+            return
         if messages == "幫助" or messages == "help":
             line_bot_api.reply_message(reply_token=replyToken, messages=flexMessage)
             return
@@ -149,7 +156,10 @@ def handling_message(event):
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(socialMedia))
             return
         if messages == "座位表":
-            line_bot_api.reply_message(reply_token=replyToken, messages=ImageSendMessage(original_content_url="https://i.imgur.com/mRxLRUL.jpg", preview_image_url="https://i.imgur.com/mRxLRUL.jpg"))
+            line_bot_api.reply_message(reply_token=replyToken,
+                                       messages=ImageSendMessage(original_content_url="https://i.imgur.com/mRxLRUL.jpg",
+                                                                 preview_image_url="https://i.imgur.com/mRxLRUL.jpg"))
+            return
         else:
             asyncio.create_task(sendmsg(line_bot_api.get_profile(userid).display_name, messages))
             echoMessages = TextSendMessage(text="發送：" + messages + "成功")
