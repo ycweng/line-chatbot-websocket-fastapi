@@ -10,7 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, ImageSendMessage,
 )
 import asyncio
 
@@ -148,6 +148,8 @@ def handling_message(event):
         if messages == "濾鏡":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(socialMedia))
             return
+        if messages == "座位表":
+            line_bot_api.reply_message(reply_token=replyToken, messages=ImageSendMessage(original_content_url="https://i.imgur.com/Hu4w6Q8.jpg", preview_image_url="https://i.imgur.com/Hu4w6Q8.jpg"))
         else:
             asyncio.create_task(sendmsg(line_bot_api.get_profile(userid).display_name, messages))
             echoMessages = TextSendMessage(text="發送：" + messages + "成功")

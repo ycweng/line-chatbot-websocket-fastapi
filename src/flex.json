@@ -54,6 +54,16 @@
           "label": "濾鏡",
           "text": "濾鏡"
         }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "座位表",
+          "text": "座位表"
+        }
       }
     ],
     "flex": 0
