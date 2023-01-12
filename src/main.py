@@ -149,7 +149,7 @@ def handling_message(event):
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(socialMedia))
             return
         if messages == "座位表":
-            line_bot_api.reply_message(reply_token=replyToken, messages=ImageSendMessage(original_content_url="https://i.imgur.com/Hu4w6Q8.jpg", preview_image_url="https://i.imgur.com/Hu4w6Q8.jpg"))
+            line_bot_api.reply_message(reply_token=replyToken, messages=ImageSendMessage(original_content_url="https://i.imgur.com/mRxLRUL.jpg", preview_image_url="https://i.imgur.com/mRxLRUL.jpg"))
         else:
             asyncio.create_task(sendmsg(line_bot_api.get_profile(userid).display_name, messages))
             echoMessages = TextSendMessage(text="發送：" + messages + "成功")
