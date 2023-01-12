@@ -123,7 +123,9 @@ lotteryMessage = "🎲🎰樂透抽獎資格 \n" + \
                  "💸休單幾哩箱： \n" + \
                  "依照投入金額100%返還現金給同仁，1張還給大家100元。"
 
-socialMedia = "另外還有ux同事創意製作的社群濾鏡可以使用喔！也不妨按讚追蹤喔！ \n" + \
+socialMedia = "尾牙資訊網 感謝iw James開發系統 \n" +\
+              "https://ruten-party.glitch.me/info \n" +\
+              "另外還有ux同事Rina設計主視覺及Abbie創意製作的社群濾鏡可以使用喔！也不妨按讚追蹤喔！ \n" + \
               "https://www.instagram.com/ar/3659533600994499/  \n" + \
               "https://www.facebook.com/fbcameraeffects/tryit/3659533600994499/"
 flexMessage = FlexSendMessage(
@@ -152,7 +154,7 @@ def handling_message(event):
         if messages == "樂透":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(lotteryMessage))
             return
-        if messages == "濾鏡":
+        if messages == "尾牙資訊網及社群濾鏡":
             line_bot_api.reply_message(reply_token=replyToken, messages=TextSendMessage(socialMedia))
             return
         if messages == "座位表":

@@ -31,6 +31,26 @@
         "height": "sm",
         "action": {
           "type": "message",
+          "label": "座位表",
+          "text": "座位表"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "尾牙資訊網及社群濾鏡",
+          "text": "尾牙資訊網及社群濾鏡"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "message",
           "label": "啤酒汽水大賽",
           "text": "啤酒汽水大賽"
         }
@@ -53,26 +73,6 @@
           "type": "message",
           "label": "樂透",
           "text": "樂透"
-        }
-      },
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "message",
-          "label": "濾鏡",
-          "text": "濾鏡"
-        }
-      },
-      {
-        "type": "button",
-        "style": "link",
-        "height": "sm",
-        "action": {
-          "type": "message",
-          "label": "座位表",
-          "text": "座位表"
         }
       }
     ],
