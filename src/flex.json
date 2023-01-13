@@ -74,6 +74,13 @@
           "label": "樂透",
           "text": "樂透"
         }
+      },
+      {
+        "type": "text",
+        "text": "或是直接輸入訊息發射彈幕到大螢幕上！",
+        "size": "sm",
+        "gravity": "center",
+        "align": "center"
       }
     ],
     "flex": 0
